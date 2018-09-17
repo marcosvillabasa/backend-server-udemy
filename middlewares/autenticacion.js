@@ -8,10 +8,10 @@ var SEED = require('../config/config.js').SEED;
 
 exports.verificaToken = function (req, res, next){ 
 
-	app.use('/', (req,res, next) => {
+	
 	var token = req.query.token;
 
-	token.verify( token, SEED, (err, decoded) => {
+	jwt.verify( token, SEED, (err, decoded) => {
 
 		if (err) {
 			return res.status(401).json({
@@ -21,11 +21,12 @@ exports.verificaToken = function (req, res, next){
 			}); 
 		}
 
-		// next();
-
+		
 		req.usuario = decoded.usuario;
+		next();
+
+		
 	});
 
-});
 }
 

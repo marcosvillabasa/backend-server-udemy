@@ -21,7 +21,9 @@ app.use(bodyParser.json());
 var appRoutes =require('./routes/app.js');
 var usuarioRoutes = require('./routes/usuario.js');
 var loginRoutes = require('./routes/login.js');
-
+var hospitalRoutes = require('./routes/hospital.js');
+var medicoRoutes = require('./routes/medico.js');
+var busquedaRoutes = require('./routes/busqueda.js');
 
 
 //conexion a la bd
@@ -34,6 +36,9 @@ mongoose.connection.openUri('mongodb://localhost:27017/HospitalDB', (err, res) =
 
 //rutas
 app.use('/usuario', usuarioRoutes);
+app.use('/hospital', hospitalRoutes);
+app.use('/medico', medicoRoutes);
+app.use('/busqueda', busquedaRoutes);
 app.use('/login', loginRoutes);
 app.use('/', appRoutes);
 
@@ -41,7 +46,7 @@ app.use('/', appRoutes);
 
 //escuchar peticiones
 app.listen(3000, () => {
-	console.log('Express server en el puerto 3000');
+	console.log('Express server en el puerto: \x1b[32m%s\x1b[0m' , '3000');
 });
 
 // //rutas 
